@@ -13,10 +13,8 @@ scalarmul:
 computationloop:
     cmp rcx,0
     je end
-    mov eax,[rdx]
-    cvtsi2ss xmm1,eax
-    mov eax,[r8]
-    cvtsi2ss xmm2,eax
+    movss xmm1,[rdx]
+    movss xmm2,[r8]
 
     mulss xmm1,xmm2 
     addss xmm0,xmm1 ;add prev scalar product to new scalar product
