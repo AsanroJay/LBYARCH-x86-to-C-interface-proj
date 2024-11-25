@@ -1,5 +1,5 @@
 section .data
-sdot dq 0
+sdot dd 0
 section .text
 bits 64
 default rel
