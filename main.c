@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 #include "kernel.c"
 
-extern void scalarmul(int n, int* arr1, int* arr2, float* ptr);
+extern void scalarmul(int n, float* arr1, float* arr2, float* ptr);
 
 double get_time_in_seconds() {
     struct timespec ts;
@@ -13,10 +14,15 @@ double get_time_in_seconds() {
 }
 
 int main() {
-    int n = 5; // Length of vectors
+    
+    int n = 0;
 
-    int vec1[n];
-    int vec2[n];
+    printf("Enter size of vectors: ");
+    scanf("%d",&n);
+
+    float* vec1 = (float*)malloc(n * sizeof(float));
+    float* vec2 = (float*)malloc(n * sizeof(float));
+
 
     float var3 = 0;
     float* ptr = &var3; // Pointer to store the result of 1 dot product between vec1 and vec2
@@ -32,13 +38,13 @@ int main() {
     // Print the randomized vectors
     printf("Vector A: ");
     for (int i = 0; i < n; i++) {
-        printf("%d ", vec1[i]);
+        printf("%.2f ", vec1[i]);
     }
     printf("\n");
 
-    printf("Vector B: ");
+    printf("\n\nVector B: ");
     for (int i = 0; i < n; i++) {
-        printf("%d ", vec2[i]);
+        printf("%.2f ", vec2[i]);
     }
     printf("\n");
 
@@ -54,21 +60,23 @@ int main() {
 
         switch (choice) {
             case 1: // Call C kernel
-                start = get_time_in_seconds();
                 printf("\nCalling C kernel...\n");
+                start = get_time_in_seconds();
                 scalarmul_c(n, vec1, vec2, ptr);  // C kernel call
                 end = get_time_in_seconds();
+                end = end - start;
                 printf("Result from C kernel: %.2f\n", *ptr);
-                printf("Time taken (C kernel): %.6f seconds\n", end - start);
+                printf("Time taken (C kernel): %.6f seconds\n", end);
                 break;
 
             case 2: // Call x86 assembly kernel
-                start = get_time_in_seconds();
                 printf("\nCalling x86 assembly kernel...\n");
+                start = get_time_in_seconds();
                 scalarmul(n, vec1, vec2, ptr);  // Assembly kernel call
                 end = get_time_in_seconds();
+                end = end - start;
                 printf("Result from assembly kernel: %.2f\n", *ptr);
-                printf("Time taken (Assembly kernel): %.6f seconds\n", end - start);
+                printf("Time taken (Assembly kernel): %.6f seconds\n", end);
                 break;
 
             case 3: // Exit
@@ -81,6 +89,9 @@ int main() {
         }
 
     } while (choice != 3);  // Repeat until exit
+
+    free(vec1); 
+    free(vec2);
 
     return 0;
 }
