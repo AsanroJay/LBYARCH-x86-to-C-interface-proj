@@ -53,30 +53,52 @@ int main() {
     int i = 0;
     double start;
     double end;
-
+    int innerchoice = 0;
+    double endtotal = 0;
     do {
         printf("\nC [1]  |  x86 assembly [2]  | Exit [3]\nEnter choice: ");
         scanf("%d", &choice); 
 
         switch (choice) {
             case 1: // Call C kernel
-                printf("\nCalling C kernel...\n");
-                start = get_time_in_seconds();
-                scalarmul_c(n, vec1, vec2, ptr);  // C kernel call
-                end = get_time_in_seconds();
-                end = end - start;
-                printf("Result from C kernel: %.2f\n", *ptr);
-                printf("Time taken (C kernel): %.6f seconds\n", end);
+                endtotal = 0;
+                printf("Enter amount of loops: ");
+                scanf("%d",&innerchoice);
+
+                for(i = 0; i < innerchoice; i++){
+                    printf("\nCalling C kernel...\n");
+                    start = get_time_in_seconds();
+                    scalarmul_c(n, vec1, vec2, ptr);  // C kernel call
+                    end = get_time_in_seconds();
+                    end = end - start;
+                    endtotal += end;
+                    printf("Result from C kernel: %.2f\n", *ptr);
+                    printf("Time taken (C kernel): %.8f seconds\n", end);
+                }
+
+                    printf("\nAverage execution time for %d loops",innerchoice);
+                    printf("\nAverage Time taken (C kernel): %.8f seconds\n", endtotal/innerchoice);
+                   
                 break;
 
             case 2: // Call x86 assembly kernel
-                printf("\nCalling x86 assembly kernel...\n");
-                start = get_time_in_seconds();
-                scalarmul(n, vec1, vec2, ptr);  // Assembly kernel call
-                end = get_time_in_seconds();
-                end = end - start;
-                printf("Result from assembly kernel: %.2f\n", *ptr);
-                printf("Time taken (Assembly kernel): %.6f seconds\n", end);
+                endtotal = 0;
+                printf("Enter amount of loops: ");
+                scanf("%d",&innerchoice);
+
+                for(i = 0; i < innerchoice; i++){
+                     printf("\nCalling x86 assembly kernel...\n");
+                    start = get_time_in_seconds();
+                    scalarmul(n, vec1, vec2, ptr);  // Assembly kernel call
+                    end = get_time_in_seconds();
+                    end = end - start;
+                    endtotal += end;
+                    printf("Result from assembly kernel: %.2f\n", *ptr);
+                    printf("Time taken (Assembly kernel): %.8f seconds\n", end);
+                 }
+                    
+                    printf("\nAverage execution time for %d loops",innerchoice);
+                    printf("\nTime taken (Assembly kernel): %.8f seconds\n", endtotal/innerchoice);
                 break;
 
             case 3: // Exit
