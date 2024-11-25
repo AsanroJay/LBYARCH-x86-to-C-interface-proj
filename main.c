@@ -15,16 +15,33 @@ double get_time_in_seconds() {
 int main() {
     int n = 5; // Length of vectors
 
- 
-    int vec1[] = {1, 2, 3, 4, 5};
-    int vec2[] = {1, 2, 3, 4, 5};
-    float vec3[20] = {0.0}; // Array to store multiple results (if needed)
+    int vec1[n];
+    int vec2[n];
+
     float var3 = 0;
     float* ptr = &var3; // Pointer to store the result of 1 dot product between vec1 and vec2
 
+    srand(time(NULL));
 
-    printf("Vector A: %d, %d, %d, %d\n", vec1[0], vec1[1], vec1[2], vec1[3]);
-    printf("Vector B: %d, %d, %d, %d\n", vec2[0], vec2[1], vec2[2], vec2[3]);
+    // Initialize vectors with random values between 0 and 9
+    for (int i = 0; i < n; i++) {
+        vec1[i] = rand() % 10;
+        vec2[i] = rand() % 10;
+    }
+
+    // Print the randomized vectors
+    printf("Vector A: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", vec1[i]);
+    }
+    printf("\n");
+
+    printf("Vector B: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", vec2[i]);
+    }
+    printf("\n");
+
 
     int choice = 0;
     int i = 0;
