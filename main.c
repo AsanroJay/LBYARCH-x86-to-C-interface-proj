@@ -29,7 +29,7 @@ int main() {
         switch (choice) {
             case 1: // Call C kernel
                 printf("\nCalling C kernel...\n");
-                scalarmul(n, vec1, vec2, ptr);  // C kernel call
+                scalarmul_c(n, vec1, vec2, ptr);  // C kernel call
                 printf("Result from C kernel: %.2f\n", *ptr);
                 break;
 
