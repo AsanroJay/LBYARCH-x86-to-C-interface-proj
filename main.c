@@ -37,20 +37,20 @@ int main() {
             vec2[i] = ((float)rand() / RAND_MAX) * 10.0;
         }
 
-        printf("\nVector A: ");
-        for (int i = 0; i < n; i++) {
-            printf("%.2f ", vec1[i]);
-        }
-        printf("\n");
+        // printf("\nVector A: ");
+        // for (int i = 0; i < n; i++) {
+        //     printf("%.2f ", vec1[i]);
+        // }
+        // printf("\n");
 
-        printf("Vector B: ");
-        for (int i = 0; i < n; i++) {
-            printf("%.2f ", vec2[i]);
-        }
+        // printf("Vector B: ");
+        // for (int i = 0; i < n; i++) {
+        //     printf("%.2f ", vec2[i]);
+        // }
 
         do {
             // Step 2: Ask for kernel choice
-            printf("\n\n[1] C\n[2] x86 assembly\n[3] Exit\nEnter your choice: ");
+            printf("\n[1] C\n[2] x86 assembly\n[3] Exit\nEnter your choice: ");
             scanf("%d", &choice);
 
             if (choice == 3) {
@@ -67,7 +67,7 @@ int main() {
             for (i = 0; i < loops; i++) {
                 if (choice == 1) {
                     // C kernel
-                    printf("\nCalling C kernel...\n");
+                    printf("\n%d) Calling C kernel...\n", i);
                     start = get_time_in_seconds();
                     scalarmul_c(n, vec1, vec2, ptr);  // C kernel call
                     end = get_time_in_seconds();
@@ -77,7 +77,7 @@ int main() {
                     printf("Time taken (C kernel): %.8f seconds\n", end);
                 } else if (choice == 2) {
                     // Assembly kernel
-                    printf("\nCalling x86 assembly kernel...\n");
+                    printf("\n%d) Calling x86 assembly kernel...\n", i);
                     start = get_time_in_seconds();
                     scalarmul(n, vec1, vec2, ptr);  // Assembly kernel call
                     end = get_time_in_seconds();
