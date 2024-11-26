@@ -49,7 +49,6 @@ int main() {
         // }
 
         do {
-            // Step 2: Ask for kernel choice
             printf("\n[1] C\n[2] x86 assembly\n[3] Exit\nEnter your choice: ");
             scanf("%d", &choice);
 
@@ -58,7 +57,6 @@ int main() {
                 break;
             }
 
-            // Step 3: Ask for number of loops
             printf("\nEnter amount of loops: ");
             scanf("%d", &loops);
 
