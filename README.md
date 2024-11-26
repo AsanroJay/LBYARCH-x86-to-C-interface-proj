@@ -65,13 +65,13 @@ This project compares the performance of two implementations of a dot product ke
 ## Conclusion
 
 ### Summary of Comparative Insights
-- **Small Vector Sizes /(2<sup>20</sup> to 2<sup>24</sup>):**
+- **Small Vector Sizes (2<sup>20</sup> to 2<sup>24</sup>):**
   - The performance gap is small but noticeable. The overhead of managing SIMD instructions is slightly higher for smaller workloads which reduces the relative speedup.
   
-- **Medium Vector Sizes /(2<sup>28</sup> to 2<sup>29</sup>):**
+- **Medium Vector Sizes (2<sup>28</sup> to 2<sup>29</sup>):**
   - The assembly kernel demonstrates significant speedups (approx. 1.8x to 2x), as the computational workload grows large enough to benefit from SIMD optimizations.
 
-- **Large Vector Sizes /(2<sup>30</sup>):**
+- **Large Vector Sizes (2<sup>30</sup>):**
   - While the assembly kernel maintains its performance edge, the gap narrows slightly due to increasing memory-related overheads.
   - At these sizes, both kernels are limited by system memory bandwidth, and CPU-bound optimizations offer diminishing returns.
 
@@ -84,7 +84,7 @@ This project compares the performance of two implementations of a dot product ke
    - While the assembly kernel is faster, it still faces challenges with extremely large vector sizes. At these sizes, memory bandwidth and cache limitations can limit performance improvements.
 
 2. **Scalability**:
-   - For very large vector sizes /(2<sup>30</sup>), the C implementation encounters memory and computational bottlenecks. 
+   - For very large vector sizes (2<sup>30</sup>), the C implementation encounters memory and computational bottlenecks. 
    - Memory latency and cache misses become significant contributors to performance degradation.   
    - The assembly kernel scales better with increasing vector sizes but encounters diminishing returns for the largest sizes due to memory bandwidth limitations.
 
